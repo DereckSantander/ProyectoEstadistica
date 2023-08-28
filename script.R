@@ -1,13 +1,25 @@
 #install.packages("moments")
+#install.packages("readxl")
+#install.packages("dplyr")
+#install.packages("ggplot2")
+#install.packages("GGally")
+#install.packages("Hmisc")
+#install.packages("corrplot")
+#install.packages("PerformanceAnalytics")
 library(moments)
 library(readr)
 library(ggplot2)
 library(fdth)
 library(dplyr)
 library(RColorBrewer)
+library(readxl)
+library(dplyr)
+library(GGally)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
 
 
-data <- read_csv("Impacto del Covid-19.csv")
 
 ###################################
 ######VARIABLES CUANTITATIVAS######
@@ -169,11 +181,11 @@ hist(data$H_Dormir,
 ######Genero######
 tabla_genero <- table(data$Genero)
 
-tabla10 <- data %>%
-  group_by(Genero) %>%
-  summarize(Frecuencia = n()) %>%
-  mutate(FrecuenciaRelativa = Frecuencia / sum(Frecuencia))
-tabla10
+#tabla10 <- data %>%
+#  group_by(Genero) %>%
+#  summarize(Frecuencia = n()) %>%
+#  mutate(FrecuenciaRelativa = Frecuencia / sum(Frecuencia))
+#tabla10
 
 barplot(tabla_genero,
         main = "Genero",
@@ -231,26 +243,26 @@ barplot(table(data$TiempoEstudio),
         col = terrain.colors(5))
 
 
-######N_Estes_CV######
-media_Nivel_Estres <- mean(data$N_Estes_CV)
-mediana_Nivel_Estres <- median(data$N_Estes_CV)
-desviacion_estandar_Nivel_Estres <- sd(data$N_Estes_CV)
-cuartiles_Nivel_Estres <- quantile(data$N_Estes_CV, probs = c(0.25, 0.5, 0.75)) 
+######Estres_CV######
+media_Nivel_Estres <- mean(data$Estres_CV)
+mediana_Nivel_Estres <- median(data$Estres_CV)
+desviacion_estandar_Nivel_Estres <- sd(data$Estres_CV)
+cuartiles_Nivel_Estres <- quantile(data$Estres_CV, probs = c(0.25, 0.5, 0.75)) 
 
 cat("Media:", media_Nivel_Estres, "\n")
 cat("Mediana:", mediana_Nivel_Estres, "\n")
 cat("Desviación Estándar:", desviacion_estandar_Nivel_Estres, "\n")
 cat("Cuartiles:", cuartiles_Nivel_Estres, "\n")
 
-tabla_Nivel_Estres <- fdth::fdt(data$N_Estes_CV)
+tabla_Nivel_Estres <- fdth::fdt(data$Estres_CV)
 tabla_Nivel_Estres
 
-boxplot(data$N_Estes_CV, 
+boxplot(data$Estres_CV, 
         main = "Nivel de estres en clases virtuales", 
         ylab = "Valoracion",
         col = "#d8d6a8")
 
-barplot(table(data$N_Estes_CV), 
+barplot(table(data$Estres_CV), 
         main = "Nivel de estres en clases virtuales", 
         xlab = "Valoracion", 
         ylab = "Frecuencia",
@@ -260,11 +272,11 @@ barplot(table(data$N_Estes_CV),
 ######Realiza_Deportes######
 tabla_Actividades <- table(data$Realiza_Deportes)
 
-tabla12 <- data %>%
-  group_by(Realiza_Deportes) %>%
-  summarize(Frecuencia = n()) %>%
-  mutate(FrecuenciaRelativa = Frecuencia / sum(Frecuencia))
-tabla12
+#tabla12 <- data %>%
+#  group_by(Realiza_Deportes) %>%
+#  summarize(Frecuencia = n()) %>%
+#  mutate(FrecuenciaRelativa = Frecuencia / sum(Frecuencia))
+#tabla12
 
 barplot(tabla_Actividades,
         main = "¿Realiza otras actividades?",
@@ -272,4 +284,7 @@ barplot(tabla_Actividades,
         col = brewer.pal(3,"Set2"))
 
 ####################################################################
-
+mc = data[,2:9]
+matriz_correlacion <- round(cor(mc),2)
+matriz_correlacion
+corrplot(matriz_correlacion, method="number", type="upper")
