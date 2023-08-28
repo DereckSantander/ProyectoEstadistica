@@ -1,3 +1,5 @@
+#install.packages("moments")
+library(moments)
 library(readr)
 library(ggplot2)
 library(fdth)
@@ -16,11 +18,15 @@ media_Edad <- mean(data$Edad)
 mediana_Edad <- median(data$Edad)
 desviacion_estandar_Edad <- sd(data$Edad)
 cuartiles_Edad <- quantile(data$Edad, probs = c(0.25, 0.5, 0.75)) 
+curtosis_Edad <- kurtosis(data$Edad)
+sesgo_Edad <- skewness(data$Edad)
 
 cat("Media:", media_Edad, "\n")
 cat("Mediana:", mediana_Edad, "\n")
 cat("Desviación Estándar:", desviacion_estandar_Edad, "\n")
 cat("Cuartiles:", cuartiles_Edad, "\n")
+cat("Curtosis:", curtosis_Edad, "\n")
+cat("Sesgo:", sesgo_Edad, "\n")
 
 tabla_Edad <- fdth::fdt(data$Edad)
 tabla_Edad 
@@ -42,11 +48,15 @@ media_H_Clases_virtuales <- mean(data$`H_Clases virtuales`)
 mediana_H_Clases_virtuales <- median(data$`H_Clases virtuales`)
 desviacion_estandar_H_Clases_virtuales <- sd(data$`H_Clases virtuales`)
 cuartiles_H_Clases_virtuales <- quantile(data$`H_Clases virtuales`, probs = c(0.25, 0.5, 0.75))
+curtosis_H_Clases_virtuales <- kurtosis(data$`H_Clases virtuales`)
+sesgo_H_Clases_virtuales <- skewness(data$`H_Clases virtuales`)
 
 cat("Media:", media_H_Clases_virtuales, "\n")
 cat("Mediana:", mediana_H_Clases_virtuales, "\n")
 cat("Desviación Estándar:", desviacion_estandar_H_Clases_virtuales, "\n")
 cat("Cuartiles:", cuartiles_H_Clases_virtuales, "\n")
+cat("Curtosis:", curtosis_H_Clases_virtuales, "\n")
+cat("Sesgo:", sesgo_H_Clases_virtuales, "\n")
 
 tabla_H_Clases_virtuales <- fdth::fdt(data$`H_Clases virtuales`)
 tabla_H_Clases_virtuales
@@ -67,11 +77,15 @@ media_H_Est_Auto <- mean(data$H_EStudioAutonomo)
 mediana_H_Est_Auto <- median(data$H_EStudioAutonomo)
 desviacion_estandar_H_Est_Auto <- sd(data$H_EStudioAutonomo)
 cuartiles_H_Est_Auto <- quantile(data$H_EStudioAutonomo, probs = c(0.25, 0.5, 0.75)) 
+curtosis_H_Est_Auto <- kurtosis(data$H_EStudioAutonomo)
+sesgo_H_Est_Auto <- skewness(data$H_EStudioAutonomo)
 
 cat("Media:", media_H_Est_Auto, "\n")
 cat("Mediana:", mediana_H_Est_Auto, "\n")
 cat("Desviación Estándar:", desviacion_estandar_H_Est_Auto, "\n")
 cat("Cuartiles:", cuartiles_H_Est_Auto, "\n")
+cat("Curtosis:", curtosis_H_Est_Auto, "\n")
+cat("Sesgo:", sesgo_H_Est_Auto, "\n")
 
 tabla_H_Est_Auto <- fdth::fdt(data$H_EStudioAutonomo)
 tabla_H_Est_Auto
@@ -93,11 +107,15 @@ media_promedio <- mean(data$Promedio_Cv)
 mediana_promedio <- median(data$Promedio_Cv)
 desviacion_estandar_promedio <- sd(data$Promedio_Cv)
 cuartiles_promedio <- quantile(data$Promedio_Cv, probs = c(0.25, 0.5, 0.75)) 
+curtosis_promedio <- kurtosis(data$Promedio_Cv)
+sesgo_promedio <- skewness(data$Promedio_Cv)
 
 cat("Media:", media_promedio, "\n")
 cat("Mediana:", mediana_promedio, "\n")
 cat("Desviación Estándar:", desviacion_estandar_promedio, "\n")
 cat("Cuartiles:", cuartiles_promedio, "\n")
+cat("Curtosis:", curtosis_promedio, "\n")
+cat("Sesgo:", sesgo_promedio, "\n")
 
 tabla_promedio <- fdth::fdt(data$Promedio_Cv)
 tabla_promedio
@@ -118,11 +136,15 @@ media_H_dormir <- mean(data$H_Dormir)
 mediana_H_dormir <- median(data$H_Dormir)
 desviacion_estandar_H_dormir <- sd(data$H_Dormir)
 cuartiles_H_dormir <- quantile(data$H_Dormir, probs = c(0.25, 0.5, 0.75)) 
+curtosis_H_dormir <- kurtosis(data$H_Dormir)
+sesgo_H_dormir <- skewness(data$H_Dormir)
 
 cat("Media:", media_H_dormir, "\n")
 cat("Mediana:", mediana_H_dormir, "\n")
 cat("Desviación Estándar:", desviacion_estandar_H_dormir, "\n")
 cat("Cuartiles:", cuartiles_H_dormir, "\n")
+cat("Curtosis:", curtosis_H_dormir, "\n")
+cat("Sesgo:", sesgo_H_dormir, "\n")
 
 tabla_H_dormir <- fdth::fdt(data$H_Dormir)
 tabla_H_dormir
@@ -248,3 +270,6 @@ barplot(tabla_Actividades,
         main = "¿Realiza otras actividades?",
         ylab = "Frecuencia",
         col = brewer.pal(3,"Set2"))
+
+####################################################################
+
