@@ -19,7 +19,7 @@ library(Hmisc)
 library(corrplot)
 library(PerformanceAnalytics)
 
-
+data <- read.csv("Impacto del Covid 19")
 
 ###################################
 ######VARIABLES CUANTITATIVAS######
@@ -284,7 +284,60 @@ barplot(tabla_Actividades,
         col = brewer.pal(3,"Set2"))
 
 ####################################################################
+####################Analisis bivariante#############################
+####################################################################
+
+#Diagramas de cajas segmentados
+
+#Promedio segmentado por Genero
+boxplot(data$Promedio_Cv~data$Genero,
+        main = "Promedio segmentado por Genero",
+        col = brewer.pal(3, "Set2"),
+        ylab= "Genero",
+        xlab= "Promedio en clases virtuales",
+        horizontal = T)
+
+#Horas de estudio autonomo segmentado por Genero
+boxplot(data$H_EStudioAutonomo~data$Genero,
+        main = "Horas de estudio autonomo segmentado por Genero",
+        col = brewer.pal(3, "Set3"),
+        ylab= "Genero",
+        xlab= "Horas de estudio autonomo",
+        horizontal = T)
+
+#Promedio segmentado por Experiencia en clases virtuales
+boxplot(data$Promedio_Cv~data$Ex_ClasesVirtuales,
+        main = "Promedio segmentado por Experiencia en clases virtuales",
+        col = brewer.pal(5, "Set2"),
+        ylab= "Experiencia en clases virtuales",
+        xlab= "Promedio en clases virtuales",
+        horizontal = T)
+
+#Promedio segmentado por Nivel de estres
+boxplot(data$Promedio_Cv~data$Estres_CV,
+        main = "Promedio segmentado por Nivel de estres",
+        col = brewer.pal(5, "Set1"),
+        ylab= "Nivel de estres",
+        xlab= "Promedio en clases virtuales",
+        horizontal = T)
+
+#Nivel de Estres segmentado por Realizacion de otras actividades
+boxplot(data$Estres_CV~data$Realiza_Deportes,
+        main = "Promedio segmentado por Realizacion de otras actividades",
+        col = brewer.pal(3, "Set1"),
+        ylab= "¿Realiza o no?",
+        xlab= "Nivel de estres en clases virtuales",
+        horizontal = T)
+
+#Diagramas de dispersion
+
+#Horas de estudio autonomo y promedio en clases virtuales
+plot(data$H_EStudioAutonomo,data$Promedio_Cv,
+     main = "",pch=19, col="black")
+
+#Matriz de correlacion
 mc = data[,2:9]
-matriz_correlacion <- round(cor(mc),2)
+matriz_correlacion <- round(cor(mc,method = "pearson"),2)
 matriz_correlacion
 corrplot(matriz_correlacion, method="number", type="upper")
+corrplot.mixed(matriz_correlacion)
