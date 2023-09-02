@@ -380,3 +380,38 @@ if(chi_cuadrado2$p.value < 0.05){
   cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto Promedio_Cv y H_EstudioAutonomo son independientes")
 }
 
+#Regresion lineal
+
+#Modelo Regresion Lineal Promedio_Cv, H_EstudioAutonomo
+cat('Modelo de Regresion Lineal entre el promedio y las horas de estudio autonomo\n')
+
+modelo1 <- data.frame(data$Promedio_Cv,data$H_EStudioAutonomo)
+modeloRegresion_Prom_EstAu <- lm(data$Promedio_Cv ~ data$H_EStudioAutonomo, data = modelo1, na.action = na.exclude )
+summary(modeloRegresion_Prom_EstAu)
+
+B0_m1 <- round(modeloRegresion_Prom_EstAu$coefficients[1],2)
+B1_m1 <- round(modeloRegresion_Prom_EstAu$coefficients[2],2)
+
+cat('Y = ',B0_m1,'+',B1_m1,'X\n')
+cat('Intercepto (B0): ',B0_m1,'\n')
+cat('Pendiente (B1): ',B1_m1,'\n')
+
+plot(data$H_EStudioAutonomo,data$Promedio_Cv, xlab='Horas de estudio autonomo', ylab='Promedio')
+abline(modeloRegresion_Prom_EstAu, col='red')
+
+#Modelo Regresion Lineal Promedio_Cv, Estres_CV
+cat('Modelo de Regresion Lineal entre el promedio y el nivel de estres\n')
+
+modelo2 <- data.frame(data$Promedio_Cv,data$Estres_CV)
+modeloRegresion_Prom_Estres <- lm(data$Promedio_Cv ~ data$Estres_CV, data = modelo2, na.action = na.exclude )
+summary(modeloRegresion_Prom_Estres)
+
+B0_m2 <- round(modeloRegresion_Prom_Estres$coefficients[1],2)
+B1_m2 <- round(modeloRegresion_Prom_Estres$coefficients[2],2)
+
+cat('Y = ',B0_m2,'+',B1_m2,'X\n')
+cat('Intercepto (B0): ',B0_m2,'\n')
+cat('Pendiente (B1): ',B1_m2,'\n')
+
+plot(data$Estres_CV,data$Promedio_Cv, xlab='Nivel de estrés', ylab='Promedio')
+abline(modeloRegresion_Prom_Estres, col='red')
