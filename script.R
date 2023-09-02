@@ -346,6 +346,8 @@ corrplot.mixed(matriz_correlacion)
 
 #Promedio_Cv, Estres_CV
 tabla_contingencia_Prom_Estres <- table(data$Promedio_Cv,data$Estres_CV)
+tabla_completa_Prom_Estres <- addmargins(tabla_contingencia_Prom_Estres)
+tabla_completa_Prom_Estres
 
 cat("Ho: Promedio_Cv y Estres_CV son independientes\n")
 cat("Ha: Promedio_Cv y Estres_CV son dependientes\n")
@@ -362,6 +364,8 @@ if(chi_cuadrado1$p.value < 0.05){
 
 #Promedio_Cv, H_EstudioAutonomo
 tabla_contingencia_Prom_EstAu <- table(data$Promedio_Cv,data$H_EStudioAutonomo)
+tabla_completa_Prom_EstAu <- addmargins(tabla_contingencia_Prom_EstAu)
+tabla_completa_Prom_EstAu
 
 cat("Ho: Promedio_Cv y H_EstudioAutonomo son independientes\n")
 cat("Ha: Promedio_Cv y H_EstudioAutonomo son dependientes\n")
