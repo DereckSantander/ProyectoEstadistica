@@ -341,3 +341,38 @@ matriz_correlacion <- round(cor(mc,method = "pearson"),2)
 matriz_correlacion
 corrplot(matriz_correlacion, method="number", type="upper")
 corrplot.mixed(matriz_correlacion)
+
+#Dependencia/Independencia de variables - Tablas de contingencia
+
+#Promedio_Cv, Estres_CV
+tabla_contingencia_Prom_Estres <- table(data$Promedio_Cv,data$Estres_CV)
+
+cat("Ho: Promedio_Cv y Estres_CV son independientes\n")
+cat("Ha: Promedio_Cv y Estres_CV son dependientes\n")
+
+chi_cuadrado1 <- chisq.test(tabla_contingencia_Prom_Estres)
+
+cat("p = ", chi_cuadrado1$p.value, "\n")
+
+if(chi_cuadrado$p.value < 0.05){
+  cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto Promedio_Cv y Estres_CV son dependientes")
+} else{
+  cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto Promedio_Cv y Estres_CV son independientes")
+}
+
+#Promedio_Cv, H_EstudioAutonomo
+tabla_contingencia_Prom_EstAu <- table(data$Promedio_Cv,data$H_EStudioAutonomo)
+
+cat("Ho: Promedio_Cv y H_EstudioAutonomo son independientes\n")
+cat("Ha: Promedio_Cv y H_EstudioAutonomo son dependientes\n")
+
+chi_cuadrado2 <- chisq.test(tabla_contingencia_Prom_EstAu)
+
+cat("p = ", chi_cuadrado2$p.value, "\n")
+
+if(chi_cuadrado$p.value < 0.05){
+  cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto Promedio_Cv y H_EstudioAutonomo son dependientes")
+} else{
+  cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto Promedio_Cv y H_EstudioAutonomo son independientes")
+}
+
