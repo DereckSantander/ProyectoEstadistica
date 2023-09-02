@@ -354,7 +354,7 @@ chi_cuadrado1 <- chisq.test(tabla_contingencia_Prom_Estres)
 
 cat("p = ", chi_cuadrado1$p.value, "\n")
 
-if(chi_cuadrado$p.value < 0.05){
+if(chi_cuadrado1$p.value < 0.05){
   cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto Promedio_Cv y Estres_CV son dependientes")
 } else{
   cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto Promedio_Cv y Estres_CV son independientes")
@@ -370,7 +370,7 @@ chi_cuadrado2 <- chisq.test(tabla_contingencia_Prom_EstAu)
 
 cat("p = ", chi_cuadrado2$p.value, "\n")
 
-if(chi_cuadrado$p.value < 0.05){
+if(chi_cuadrado2$p.value < 0.05){
   cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto Promedio_Cv y H_EstudioAutonomo son dependientes")
 } else{
   cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto Promedio_Cv y H_EstudioAutonomo son independientes")
