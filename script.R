@@ -6,6 +6,12 @@
 #install.packages("Hmisc")
 #install.packages("corrplot")
 #install.packages("PerformanceAnalytics")
+#install.packages("MASS")
+#install.packages("survival")
+#installed.packages("fitdistrplus")
+library(MASS)
+library(survival)
+library(fitdistrplus)
 library(moments)
 library(readr)
 library(ggplot2)
@@ -19,7 +25,7 @@ library(Hmisc)
 library(corrplot)
 library(PerformanceAnalytics)
 
-data <- read.csv("Impacto del Covid 19")
+#data <- read.csv("Impacto del Covid 19")
 
 ###################################
 ######VARIABLES CUANTITATIVAS######
@@ -357,9 +363,9 @@ chi_cuadrado1 <- chisq.test(tabla_contingencia_Prom_Estres)
 cat("p = ", chi_cuadrado1$p.value, "\n")
 
 if(chi_cuadrado1$p.value < 0.05){
-  cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto Promedio_Cv y Estres_CV son dependientes")
+  cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto Promedio_Cv y Estres_CV son dependientes\n")
 } else{
-  cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto Promedio_Cv y Estres_CV son independientes")
+  cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto Promedio_Cv y Estres_CV son independientes\n")
 }
 
 #Promedio_Cv, H_EstudioAutonomo
@@ -375,12 +381,43 @@ chi_cuadrado2 <- chisq.test(tabla_contingencia_Prom_EstAu)
 cat("p = ", chi_cuadrado2$p.value, "\n")
 
 if(chi_cuadrado2$p.value < 0.05){
-  cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto Promedio_Cv y H_EstudioAutonomo son dependientes")
+  cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto Promedio_Cv y H_EstudioAutonomo son dependientes\n")
 } else{
-  cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto Promedio_Cv y H_EstudioAutonomo son independientes")
+  cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto Promedio_Cv y H_EstudioAutonomo son independientes\n")
 }
+#####Prueba de bondad de ajuste#######
 
-#Regresion lineal
+#Ho: Cumple con una distribucion normal
+#Ha: No cumple con una distribucion normal
+#Bajo un supuesto del 0.05 de significancia
+
+#Promedio_Cv
+require(MASS)
+ajuste_Promedio <- fitdist(data$Promedio_Cv, "norm")
+ajuste_Promedio
+#Si el valor P es menor al nivel de significancia de 0.05, se rechaza la Ho
+ks_Promedio <- ks.test(data$Promedio_Cv, "pnorm", mean=ajuste_Promedio$estimate[1], sd=ajuste_Promedio$estimate[2])
+ks_Promedio
+if(ks_Promedio$p.value < 0.05){
+  cat("Valor P menor al nivel de significancia, se rechaza Ho, por lo tanto no sigue una distribucion normal\n")
+} else{
+  cat("Valor P fuera de region de rechazo, no se rechaza Ho, por lo tanto sigue una distribucion normal")
+}  
+
+#H_Dormir
+ajuste_H_Dormir <- fitdist(data$H_Dormir, "norm")
+ajuste_H_Dormir
+#Si el valor P es menor al nivel de significancia de 0.05, se rechaza la Ho
+ks_H_Dormir <- ks.test(data$H_Dormir, "pnorm", mean=ajuste_H_Dormir$estimate[1], sd=ajuste_H_Dormir$estimate[2])
+ks_H_Dormir
+if(ks_H_Dormir$p.value < 0.05){
+  cat("Valor P menor al nivel de significancia, se rechaza Ho, por lo tanto no sigue una distribucion normal\n")
+} else{
+  cat("Valor P fuera de region de rechazo, no se rechaza Ho, por lo tanto sigue una distribucion normal")
+}  
+#####################################################################
+##########################Regresion lineal###########################
+#####################################################################
 
 #Modelo Regresion Lineal Promedio_Cv, H_EstudioAutonomo
 cat('Modelo de Regresion Lineal entre el promedio y las horas de estudio autonomo\n')
@@ -424,17 +461,17 @@ abline(modeloRegresion_Prom_Estres, col='red')
 
 #Prueba de hipotesis para una media
 
-cat('H0: Promedio de horas de sueño menor a 7')
-cat('Ha: Promedio de horas de sueño mayor o igual a 7')
+cat('H0: Promedio de horas de sueño menor a 7\n')
+cat('Ha: Promedio de horas de sueño mayor o igual a 7\n')
 
 valor_z <- (media_H_dormir - 7) / (desviacion_estandar_H_dormir / sqrt(100))
 
 #-valor p, cola derecha
 valor_p <- 1 - pnorm(valor_z)
-cat('p = ',valor_p)
+cat('p = ',valor_p,"\n")
 
 if(valor_p < 0.05){
-  cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto, el promedio de horas de sueño es mayor o igual a 7")
+  cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto, el promedio de horas de sueño es mayor o igual a 7\n")
 }else{
-  cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto, el promedio de horas de sueño es menor a 7")
+  cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto, el promedio de horas de sueño es menor a 7\n")
 }
