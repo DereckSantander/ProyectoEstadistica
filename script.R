@@ -415,3 +415,20 @@ cat('Pendiente (B1): ',B1_m2,'\n')
 
 plot(data$Estres_CV,data$Promedio_Cv, xlab='Nivel de estrés', ylab='Promedio')
 abline(modeloRegresion_Prom_Estres, col='red')
+
+#Prueba de hipotesis para una media
+
+cat('H0: Promedio de horas de sueño menor a 7')
+cat('Ha: Promedio de horas de sueño mayor o igual a 7')
+
+valor_z <- (media_H_dormir - 7) / (desviacion_estandar_H_dormir / sqrt(100))
+
+#-valor p, cola derecha
+valor_p <- 1 - pnorm(valor_z)
+cat('p = ',valor_p)
+
+if(valor_p < 0.05){
+  cat("Valor p muy pequeño. Se rechaza Ho. Por lo tanto, el promedio de horas de sueño es mayor o igual a 7")
+}else{
+  cat("Valor p no tan pequeño. No se rechaza Ho. Por lo tanto, el promedio de horas de sueño es menor a 7")
+}
