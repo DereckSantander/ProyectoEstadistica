@@ -389,6 +389,9 @@ modelo1 <- data.frame(data$Promedio_Cv,data$H_EStudioAutonomo)
 modeloRegresion_Prom_EstAu <- lm(data$Promedio_Cv ~ data$H_EStudioAutonomo, data = modelo1, na.action = na.exclude )
 summary(modeloRegresion_Prom_EstAu)
 
+#Significancia
+summary(modeloRegresion_Prom_EstAu)$coefficients
+
 B0_m1 <- round(modeloRegresion_Prom_EstAu$coefficients[1],2)
 B1_m1 <- round(modeloRegresion_Prom_EstAu$coefficients[2],2)
 
@@ -405,6 +408,9 @@ cat('Modelo de Regresion Lineal entre el promedio y el nivel de estres\n')
 modelo2 <- data.frame(data$Promedio_Cv,data$Estres_CV)
 modeloRegresion_Prom_Estres <- lm(data$Promedio_Cv ~ data$Estres_CV, data = modelo2, na.action = na.exclude )
 summary(modeloRegresion_Prom_Estres)
+
+#Significancia
+summary(modeloRegresion_Prom_Estres)$coefficients
 
 B0_m2 <- round(modeloRegresion_Prom_Estres$coefficients[1],2)
 B1_m2 <- round(modeloRegresion_Prom_Estres$coefficients[2],2)
