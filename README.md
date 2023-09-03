@@ -1,4 +1,5 @@
 # Proyecto Estadistica Grupo 2
+## [Proyecto en GitHub](https://github.com/DereckSantander/ProyectoEstadistica.git) 
 ## Integrantes: 
 * Dereck Santander
 * Abraham Maldonado
