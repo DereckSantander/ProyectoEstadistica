@@ -25,8 +25,6 @@ library(Hmisc)
 library(corrplot)
 library(PerformanceAnalytics)
 
-#data <- read.csv("Impacto del Covid 19")
-
 ###################################
 ######VARIABLES CUANTITATIVAS######
 ###################################
