@@ -199,16 +199,16 @@ barplot(tabla_genero,
         col = brewer.pal(3,"Set2"))
 
 ######Ex_Clases_Virtuales######
-media_Exp_Clases_virtuales <- mean(data$Ex_ClasesVirtuales)
-mediana_Exp_Clases_virtuales <- median(data$Ex_ClasesVirtuales)
-desviacion_estandar_Exp_Clases_virtuales <- sd(data$Ex_ClasesVirtuales)
-cuartiles_Exp_Clases_virtuales <- quantile(data$Ex_ClasesVirtuales, 
-                                           probs = c(0.25, 0.5, 0.75)) 
+#media_Exp_Clases_virtuales <- mean(data$Ex_ClasesVirtuales)
+#mediana_Exp_Clases_virtuales <- median(data$Ex_ClasesVirtuales)
+#desviacion_estandar_Exp_Clases_virtuales <- sd(data$Ex_ClasesVirtuales)
+#cuartiles_Exp_Clases_virtuales <- quantile(data$Ex_ClasesVirtuales, 
+#                                           probs = c(0.25, 0.5, 0.75)) 
 
-cat("Media:", media_Exp_Clases_virtuales, "\n")
-cat("Mediana:", mediana_Exp_Clases_virtuales, "\n")
-cat("Desviación Estándar:", desviacion_estandar_Exp_Clases_virtuales, "\n")
-cat("Cuartiles:", cuartiles_Exp_Clases_virtuales, "\n")
+#cat("Media:", media_Exp_Clases_virtuales, "\n")
+#cat("Mediana:", mediana_Exp_Clases_virtuales, "\n")
+#cat("Desviación Estándar:", desviacion_estandar_Exp_Clases_virtuales, "\n")
+#cat("Cuartiles:", cuartiles_Exp_Clases_virtuales, "\n")
 
 tabla_Exp_Clases_virtuales <- fdth::fdt(data$Ex_ClasesVirtuales)
 tabla_Exp_Clases_virtuales
@@ -224,15 +224,15 @@ barplot(table(data$Ex_ClasesVirtuales),
         col = terrain.colors(5))
 
 ######Tiempo_Estudio######
-media_Satis_Tiempo_Est <- mean(data$TiempoEstudio)
-mediana_Satis_Tiempo_Est <- median(data$TiempoEstudio)
-desviacion_estandar_Satis_Tiempo_Est <- sd(data$TiempoEstudio)
-cuartiles_Satis_Tiempo_Est <- quantile(data$TiempoEstudio, probs = c(0.25, 0.5, 0.75)) 
+#media_Satis_Tiempo_Est <- mean(data$TiempoEstudio)
+#mediana_Satis_Tiempo_Est <- median(data$TiempoEstudio)
+#desviacion_estandar_Satis_Tiempo_Est <- sd(data$TiempoEstudio)
+#cuartiles_Satis_Tiempo_Est <- quantile(data$TiempoEstudio, probs = c(0.25, 0.5, 0.75)) 
 
-cat("Media:", media_Satis_Tiempo_Est, "\n")
-cat("Mediana:", mediana_Satis_Tiempo_Est, "\n")
-cat("Desviación Estándar:", desviacion_estandar_Satis_Tiempo_Est, "\n")
-cat("Cuartiles:", cuartiles_Satis_Tiempo_Est, "\n")
+#cat("Media:", media_Satis_Tiempo_Est, "\n")
+#cat("Mediana:", mediana_Satis_Tiempo_Est, "\n")
+#cat("Desviación Estándar:", desviacion_estandar_Satis_Tiempo_Est, "\n")
+#cat("Cuartiles:", cuartiles_Satis_Tiempo_Est, "\n")
 
 tabla_Satis_Tiempo_Est <- fdth::fdt(data$TiempoEstudio)
 tabla_Satis_Tiempo_Est
@@ -250,15 +250,15 @@ barplot(table(data$TiempoEstudio),
 
 
 ######Estres_CV######
-media_Nivel_Estres <- mean(data$Estres_CV)
-mediana_Nivel_Estres <- median(data$Estres_CV)
-desviacion_estandar_Nivel_Estres <- sd(data$Estres_CV)
-cuartiles_Nivel_Estres <- quantile(data$Estres_CV, probs = c(0.25, 0.5, 0.75)) 
+#media_Nivel_Estres <- mean(data$Estres_CV)
+#mediana_Nivel_Estres <- median(data$Estres_CV)
+#desviacion_estandar_Nivel_Estres <- sd(data$Estres_CV)
+#cuartiles_Nivel_Estres <- quantile(data$Estres_CV, probs = c(0.25, 0.5, 0.75)) 
 
-cat("Media:", media_Nivel_Estres, "\n")
-cat("Mediana:", mediana_Nivel_Estres, "\n")
-cat("Desviación Estándar:", desviacion_estandar_Nivel_Estres, "\n")
-cat("Cuartiles:", cuartiles_Nivel_Estres, "\n")
+#cat("Media:", media_Nivel_Estres, "\n")
+#cat("Mediana:", mediana_Nivel_Estres, "\n")
+#cat("Desviación Estándar:", desviacion_estandar_Nivel_Estres, "\n")
+#cat("Cuartiles:", cuartiles_Nivel_Estres, "\n")
 
 tabla_Nivel_Estres <- fdth::fdt(data$Estres_CV)
 tabla_Nivel_Estres
