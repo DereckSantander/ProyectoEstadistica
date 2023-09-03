@@ -402,7 +402,18 @@ if(ks_Promedio$p.value < 0.05){
   cat("Valor P menor al nivel de significancia, se rechaza Ho, por lo tanto no sigue una distribucion normal\n")
 } else{
   cat("Valor P fuera de region de rechazo, no se rechaza Ho, por lo tanto sigue una distribucion normal")
-}  
+}
+
+#H_EstudioAutonomo
+ajuste_H_EstudioAutonomo <- fitdist(data$H_EStudioAutonomo, "norm")
+ajuste_H_EstudioAutonomo
+ks_H_EstudioAutonomo <- ks.test(data$H_EStudioAutonomo, "pnorm", mean=ajuste_H_EstudioAutonomo$estimate[1], sd=ajuste_H_EstudioAutonomo$estimate[2])
+ks_H_EstudioAutonomo
+if(ks_H_EstudioAutonomo$p.value < 0.05){
+  cat("Valor P menor al nivel de significancia, se rechaza Ho, por lo tanto no sigue una distribucion normal\n")
+} else{
+  cat("Valor P fuera de region de rechazo, no se rechaza Ho, por lo tanto sigue una distribucion normal")
+} 
 
 #H_Dormir
 ajuste_H_Dormir <- fitdist(data$H_Dormir, "norm")
